@@ -27,7 +27,7 @@ async function run() {
         });
 
         // GET Single event
-        app.get('/event/:id', async (req, res) => {
+        app.get('/events/:id', async (req, res) => {
             const id = req.params.id;
             const query = { _id: ObjectId(id) };
             const event = await toursCollection.findOne(query);
