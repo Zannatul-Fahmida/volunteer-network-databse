@@ -26,6 +26,14 @@ async function run() {
             res.send(events);
         });
 
+        // GET Single event
+        app.get('/event/:id', async (req, res) => {
+            const id = req.params.id;
+            const query = { _id: ObjectId(id) };
+            const event = await toursCollection.findOne(query);
+            res.json(event);
+        })
+
         // POST API
         app.post('/events', async (req, res) => {
             const event = req.body;
@@ -44,9 +52,9 @@ async function run() {
 run().catch(console.dir);
 
 app.get('/', (req, res) => {
-  res.send('Volunteer network server');
+    res.send('Volunteer network server');
 })
 
 app.listen(port, () => {
-  console.log(`App listening at http://localhost:${port}`);
+    console.log(`App listening at http://localhost:${port}`);
 })
